@@ -60,6 +60,16 @@ string XOR_func(string str , string key)
     return output;
 }
 
+
+
+void convert_string_to_file(string data)
+{
+    ofstream outputFile("output.txt");
+    outputFile << data;
+    outputFile.close();
+}
+
+
 int main()
 {
 
