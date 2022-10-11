@@ -49,3 +49,35 @@ string key_PermuteC2(string shiftedKey)
 	return PC2_key;
 
 }
+
+string shift_halfKey(int shiftNo, string halfKey)
+	{
+		//start from the nth bit after shift as first bit of new key
+		string shiftedKey = "";
+		for (int i = shiftNo; i < halfKey.length(); i++)
+		{
+			shiftedKey += halfKey[i];
+		}
+		for (int i = 0; i < shiftNo ; i++)
+		{
+			shiftedKey += halfKey[i];
+		}
+		return shiftedKey;
+	}
+
+	string shift_key(string key , int RoundNo)
+	{
+		int shift[] = { 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1 };
+		string leftKey = "";
+		string rightKey = "";
+		for (int i = 0; i < 28; i++)
+		{
+			leftKey += key[i];
+		}
+		for (int i = 28; i < 56; i++)
+		{
+			rightKey += key[i];
+		}
+		return shift_halfKey(shift[RoundNo - 1], leftKey) + shift_halfKey(shift[RoundNo - 1], rightKey);
+
+	}
