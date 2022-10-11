@@ -1,7 +1,7 @@
 //All operations performed on the key before rounds
 
 //steps of flow:
-//key_PermuteC1( original key ) --> shift_key( output,round number) --> key_PermuteC2(output);
+//key_PermuteC1( original key ) --> shift_key( output , round number) --> key_PermuteC2(output);
 	
 //Permutation choice 1
 string key_PermuteC1(string originalKey)
