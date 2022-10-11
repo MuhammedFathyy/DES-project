@@ -52,6 +52,7 @@ string key_PermuteC2(string shiftedKey)
 
 }
 
+//shifting each half of key (called internally in shift key)
 string shift_halfKey(int shiftNo, string halfKey)
 	{
 		//start from the nth bit after shift as first bit of new key
@@ -66,8 +67,8 @@ string shift_halfKey(int shiftNo, string halfKey)
 		}
 		return shiftedKey;
 	}
-
-	string shift_key(string key , int RoundNo)
+//function that taked the 56 bit key and left-shifts it based on round number
+string shift_key(string key , int RoundNo)
 	{
 		int shift[] = { 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1 };
 		string leftKey = "";
