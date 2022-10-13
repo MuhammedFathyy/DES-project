@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-
+#include "Sbox.h";
 using namespace std;
 
 int Initial_Permutation[64] = { 58 , 50 , 42 , 34 , 26 , 18 , 10 , 2 , 60 , 52  , 44 , 36 , 28 , 20 , 12 , 4 , 62 , 54 , 46 , 38 , 30 , 22 , 14 ,
@@ -200,21 +200,15 @@ string Round(string data, string roundkey) {
     string expansionPerm = Expansion_Permutation_function(right);
     string Xor = XOR_func(expansionPerm, roundkey);
 
-    //sbox implementation
-    //string permutation = Permutation_function(sbox);
-    //string nextright = XOR_func(permutation, left);
-    //string nextleft = right;
 
+    string S_box = sbox(Xor);
 
-    //return  nextleft + nextright;
-
-
-
-
-
+    string permutation = Permutation_function(S_box);
+    string nextright = XOR_func(permutation, left);
+    string nextleft = right;
+    return  nextleft + nextright;
 
 }
-
 
 
 

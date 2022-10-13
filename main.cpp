@@ -11,7 +11,7 @@ int main()
 
 
     string str = "";
-
+    string output = "";
     convert_file_to_string(str);
     vector <string> v;
 
@@ -47,8 +47,6 @@ int main()
 
             string roundOutput = Round(data, c2);
 
-            // s-box
-
 
             //final step before entring the success round
             key = keyround;
@@ -56,13 +54,11 @@ int main()
 
         }
 
-        string output = Inverse_Initial_Permutation_function(data);
+        output = Inverse_Initial_Permutation_function(data);
 
     }
 
-    // the output 
-   // convert_string_to_file();
-    
+    convert_string_to_file(output);
 
     return 0;
 }
