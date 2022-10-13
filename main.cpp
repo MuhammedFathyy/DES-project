@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+const int SBOX_ROW_SIZE = 16;
+const int SBOX_6BIT_SIZE = 64;
 using namespace std;
 
 int Initial_Permutation[65] = {0 , 58 , 50 , 42 , 34 , 26 , 18 , 10 , 2 , 60 , 52  , 44 , 36 , 28 , 20 , 12 , 4 , 62 , 54 , 46 , 38 , 30 , 22 , 14 ,
@@ -16,7 +18,7 @@ int Inverse_Initial_Permutation[65] = {0 , 40 , 8 , 48 , 16 , 56 , 24 , 64 , 32 
 int Expansion_Permutation[49] = {0 , 32 , 1 , 2 , 3 , 4 , 5 , 4 , 5 , 6 , 7 , 8 , 9 ,  8 , 9 , 10 , 11 , 12 , 13 , 12 , 13 , 14 , 15 , 16 , 17 , 16 , 17 ,
                                  18 , 19 , 20 , 21 , 20 , 21 , 22 , 23 , 24 , 25 , 24 , 25 , 26 , 27 , 28 , 29 , 28 , 29 , 30 , 31 , 32 , 1};
 
-int sbox[] = {
+int sbox_table[] = {
     14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7,
     0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8,
     4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0,
@@ -204,6 +206,67 @@ string convert_hexa_to_binary (string str)
     return binaryFile;
 }
 
+string char_hex_to_bin(string str) {
+    string binaryFile = "";
+
+    if (str == "0")
+        binaryFile += "0000";
+    else if (str == "1")
+        binaryFile += "0001";
+    else if (str == "2")
+        binaryFile += "0010";
+    else if (str == "3")
+            binaryFile += "0011";
+    else if (str == "4")
+            binaryFile += "0100";
+    else if (str == "5")
+            binaryFile += "0101";
+    else if (str == "6")
+            binaryFile += "0110";
+    else if (str == "7")
+            binaryFile += "0111";
+    else if (str == "8")
+            binaryFile += "1000";
+    else if (str == "9")
+            binaryFile += "1001";
+    else if (str == "10")
+            binaryFile += "1010";
+    else if (str == "11")
+            binaryFile += "1011";
+    else if (str == "12")
+            binaryFile += "1100";
+    else if (str == "13")
+            binaryFile += "1101";
+    else if (str == "14")
+            binaryFile += "1110";
+    else if (str == "15")
+            binaryFile += "1111";
+    return binaryFile;
+}
+
+string sbox (string s)
+{
+    string output = "";
+    for (int i = 0; i < 8; i++)
+    {
+        // define a variable to hold the first index of the sbox
+        // bin is used to convert the binary to decimal in O(1)
+        int f_elem = i * 6, column_indx = 0, bin = 8;
+        int row_indx = (int(s[f_elem]) - int('0')) * 2 + (int(s[f_elem + 5]) - int('0'));
+//        cout <<(int(s[f_elem + 5]) - int('0'))<< endl;
+//        cout << row_indx << endl;
+        for (int j = 1; j <= 4; j++)
+        {
+            column_indx += (int(s[f_elem + j]) - int('0')) * bin;
+            bin /= 2;
+        }
+//        cout << to_string(sbox_table[row_indx * SBOX_ROW_SIZE + i * SBOX_6BIT_SIZE + column_indx]) << endl;
+//        cout << char_hex_to_bin(to_string(sbox_table[row_indx * SBOX_ROW_SIZE + i * SBOX_6BIT_SIZE + column_indx]));
+//        cout << endl;
+        output += char_hex_to_bin(to_string(sbox_table[row_indx * SBOX_ROW_SIZE + i * SBOX_6BIT_SIZE + column_indx]));
+    }
+    return output;
+}
 
 int main ()
 {
@@ -240,6 +303,11 @@ int main ()
 
     convert_string_to_file (initialPermutation);
     cout << initialPermutation;
+
+//test sbox
+//     string input = "111111000000111111000000111111000000111111000000";
+//     cout << sbox (input) << endl;
+
 
     return 0;
 }
