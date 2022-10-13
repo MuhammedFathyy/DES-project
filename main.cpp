@@ -60,8 +60,10 @@ int main()
 
     }
 
-    convert_string_to_file(initialPermutation);
-    cout << initialPermutation;
+    // the output 
+   // convert_string_to_file();
+    
 
     return 0;
 }
+
