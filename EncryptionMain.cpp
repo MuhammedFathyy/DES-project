@@ -34,7 +34,7 @@ int main()
 
         string data = v[i];
         data = Initial_Permutation_function(v[i]);
-        string key = convert_hexa_to_binary("133457799BBCDFF1");
+        string key = convert_hexa_to_binary("0123456789ABCDEF");
         string c1 = key_PermuteC1(key);
         for (int round = 1; round <= 16; round++) {
             string keyround = shift_key(c1, round);
