@@ -85,11 +85,36 @@ string XOR_func(string str, string key)
     return output;
 }
 
+string convert_binary_to_hexa(string str)
+{
+    string hexaFile;
+    for (int i = 0; i < str.length(); i += 4)
+    {
+        string temp = str.substr(i, 4);
+        if (temp == "0000")  hexaFile += "0";
+        if (temp == "0001")  hexaFile += "1";
+        if (temp == "0010")  hexaFile += "2";
+        if (temp == "0011")  hexaFile += "3";
+        if (temp == "0100")  hexaFile += "4";
+        if (temp == "0101")  hexaFile += "5";
+        if (temp == "0110")  hexaFile += "6";
+        if (temp == "0111")  hexaFile += "7";
+        if (temp == "1000")  hexaFile += "8";
+        if (temp == "1001")  hexaFile += "9";
+        if (temp == "1010")  hexaFile += "A";
+        if (temp == "1011")  hexaFile += "B";
+        if (temp == "1100")  hexaFile += "C";
+        if (temp == "1101")  hexaFile += "D";
+        if (temp == "1110")  hexaFile += "E";
+        if (temp == "1111")  hexaFile += "F";
+    }
+    return hexaFile;
+}
 
 
 void convert_string_to_file(string data)
-{
-    ofstream outputFile("output.txt");
+{   
+    ofstream outputFile("Encryption.txt");
     outputFile << data;
     outputFile.close();
 }

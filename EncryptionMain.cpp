@@ -14,24 +14,22 @@ int main()
     vector <string> v;
 
     string binary = convert_hexa_to_binary(str);
-    int n = 1;
     int j = 0;
     int index = 0;
     for (int i = 0; i < binary.size(); i = i + 64) {
         v.push_back("");
-        for (; j <= n * 63; j++) {
+        for (; j < i + 64; j++) {
 
             v[index] += binary[j];
         }
-        j = n * 63;
-        n++;
         index++;
     }
+    string hexaData = "";
 
     string initialPermutation;
 
     for (int i = 0; i < v.size(); i++) {
-
+        cout << convert_binary_to_hexa("000000010010001101000101011001111000100110101011110011011110111");
         string data = v[i];
         data = Initial_Permutation_function(v[i]);
         string key = convert_hexa_to_binary("0123456789ABCDEF");
@@ -58,10 +56,11 @@ int main()
             dataRight += data[i];
         }
         //reverse data last time
-        data = dataRight + dataLeft;
-        output = Inverse_Initial_Permutation_function(data);
+        string finaloutput = dataRight + dataLeft;
+        output = Inverse_Initial_Permutation_function(finaloutput);
+        hexaData += convert_binary_to_hexa(output);
     }
-    convert_string_to_file(output);
+    convert_string_to_file(hexaData);
     return 0;
 }
 
