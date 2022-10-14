@@ -9,8 +9,8 @@ int main()
 {
     string str = "";
     string output = "";
-    //convert_file_to_string(str);
-    str = "0123456789ABCDEF";
+    convert_file_to_string(str);
+    //str = "0123456789ABCDEF";
     vector <string> v;
 
     string binary = convert_hexa_to_binary(str);
