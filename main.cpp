@@ -1,18 +1,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
-#include "permutation.h"
+#include "permutations.h"
 #include "keyoperations.h"
 using namespace std;
 
 int main()
 {
-
-
     string str = "";
     string output = "";
-    convert_file_to_string(str);
+    //convert_file_to_string(str);
+    str = "0123456789ABCDEF";
     vector <string> v;
 
     string binary = convert_hexa_to_binary(str);
@@ -44,22 +42,26 @@ int main()
             string c2 = key_PermuteC2(keyround);
 
             //start each round
-
             string roundOutput = Round(data, c2);
 
-
             //final step before entring the success round
-            key = keyround;
+            c1 = keyround;
             data = roundOutput;
-
         }
-
+        string dataLeft, dataRight;
+        for (int i = 0; i < 32; i++)
+        {
+            dataLeft += data[i];
+        }
+        for (int i = 32; i < 64; i++)
+        {
+            dataRight += data[i];
+        }
+        //reverse data last time
+        data = dataRight + dataLeft;
         output = Inverse_Initial_Permutation_function(data);
-
     }
-
     convert_string_to_file(output);
-
     return 0;
 }
 
