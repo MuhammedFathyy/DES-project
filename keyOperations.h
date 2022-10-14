@@ -3,6 +3,7 @@
 //steps of flow:
 //key_PermuteC1( original key ) --> shift_key( output , round number) --> key_PermuteC2(output);
 	
+
 //Permutation choice 1
 string key_PermuteC1(string originalKey)
 {
@@ -84,3 +85,18 @@ string shift_key(string key , int RoundNo)
 		return shift_halfKey(shift[RoundNo - 1], leftKey) + shift_halfKey(shift[RoundNo - 1], rightKey);
 
 	}
+
+//generate 16 keys 
+vector <string> generateKeys(vector<string> keys) {
+
+	string key = convert_hexa_to_binary("133457799BBCDFF1");
+	string c1 = key_PermuteC1(key);
+	for (int round = 1; round <= 16; round++) {
+		string keyround = shift_key(c1, round);
+		//we generate the key for every round 
+		string c2 = key_PermuteC2(keyround);
+		keys.push_back(c2);
+		c1 = keyround;
+	}
+	return keys;
+}

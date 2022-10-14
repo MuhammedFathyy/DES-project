@@ -112,16 +112,16 @@ string convert_binary_to_hexa(string str)
 }
 
 
-void convert_string_to_file(string data)
+void convert_string_to_file(string data, string fileName)
 {   
-    ofstream outputFile("Encryption.txt");
+    ofstream outputFile(fileName);
     outputFile << data;
     outputFile.close();
 }
 
-void convert_file_to_string(string& str) {
+void convert_file_to_string(string& str , string fileName) {
     ifstream myfile;
-    myfile.open("Text.txt");
+    myfile.open(fileName);
 
     if (myfile.is_open())
     {
